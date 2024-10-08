@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
   }, []);
 
   return (
-    <header className="bg-blue p-4 shadow-md flex justify-between items-center py-6">
+    <header className="bg-blue p-4 shadow-md flex justify-between items-center py-8">
       <div className="text-blue-500 font-bold text-2xl px-2 md:px-6 md:text-3xl">
         <Link href="/">Nylas Demo</Link>
       </div>
@@ -49,7 +49,7 @@ const NavBar: React.FC = () => {
       </div>
 
       <nav className="hidden md:block">
-        <ul className="md:flex space-x-8 text-gray-600 text-lg font-semibold">
+        <ul className="md:flex space-x-8 text-gray-600 text-xl font-semibold">
           <li>
             <a
               href="https://www.nylas.com/"
