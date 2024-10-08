@@ -49,7 +49,7 @@ const NavBar: React.FC = () => {
       </div>
 
       <nav className="hidden md:block">
-        <ul className="md:flex md:space-x-8 text-gray-600 text-xl font-semibold">
+        <ul className="md:flex space-x-8 text-gray-600 text-xl font-semibold">
           <li>
             <a
               href="https://www.nylas.com/"
