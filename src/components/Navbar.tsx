@@ -17,7 +17,7 @@ const NavBar: React.FC = () => {
 
   return (
     <header className="bg-blue p-4 shadow-md flex justify-between items-center py-6">
-      <div className="text-blue-500 font-bold text-2xl md:px-6 md:text-3xl">
+      <div className="text-blue-500 font-bold text-2xl px-2 md:px-6 md:text-3xl">
         <Link href="/">Nylas Demo</Link>
       </div>
 
@@ -49,7 +49,7 @@ const NavBar: React.FC = () => {
       </div>
 
       <nav className="hidden md:block">
-        <ul className="md:flex space-x-8 text-grey-200 text-lg">
+        <ul className="md:flex space-x-8 text-gray-600 text-lg font-semibold">
           <li>
             <a
               href="https://www.nylas.com/"
@@ -109,8 +109,8 @@ const NavBar: React.FC = () => {
       </nav>
 
       {isMenuOpen && (
-        <nav className="absolute top-20 left-0 right-0 bg-blue-500 justify-center">
-          <ul className="flex flex-col text-gray-50 text-2xl items-center space-y-8 py-8">
+        <nav className="absolute top-20 left-0 bottom-0 right-0 bg-blue-500 justify-center z-10 h-full">
+          <ul className="flex flex-col text-gray-50 text-2xl items-center space-y-8 py-12">
             <li>
               <a
                 href="https://www.nylas.com/"
