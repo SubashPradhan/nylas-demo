@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 const Hero: React.FC = () => {
   const [email, setEmail] = useState("");
-  console.log("This is in the input", email)
+  
   return (
     <section className="relative bg-blue-500 text-white overflow-hidden">
       <div className="container mx-auto px-4 py-8 md:py-16 md:pb-24 text-center tracking-wider">
-        <h1 className="text-4xl font-bold mb-4">
+        <h1 className="text-3xl font-bold mb-4 md:text-4xl">
           Build Email Calendar and Contacts
           <span className="text-yellow-300"> Features in No Time</span> with
           Nylas
