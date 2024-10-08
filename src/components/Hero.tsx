@@ -5,13 +5,13 @@ const Hero: React.FC = () => {
   
   return (
     <section className="relative bg-blue-500 text-white overflow-hidden">
-      <div className="container mx-auto px-4 py-8 md:py-16 md:pb-24 text-center tracking-wider">
+      <div className="container mx-auto px-4 py-8 md:py-16 md:pb-24 text-center tracking-wider min-h-screen sm:min-h-[60vh]">
         <h1 className="text-3xl font-bold mb-4 md:text-4xl">
           Build Email Calendar and Contacts
           <span className="text-yellow-300"> Features in No Time</span> with
           Nylas
         </h1>
-        <p className="text-lg mb-8 text-white">
+        <p className="text-lg mb-8 text-white md:mt-0 mt-10">
           Nylas provides powerful APIs that let developers quickly integrate
           email, calendar, and contacts functionalities into their applications.
           Experience seamless connectivity with minimal code.
@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <button
-            className="bg-white font-bold text-blue-500 px-4 py-2 rounded hover:bg-gray-100"
+            className="bg-yellow-500 font-bold text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-blue-500"
           >
             Connect Your Mailbox
           </button>
