@@ -11,7 +11,7 @@ const EmailItem: React.FC<EmailItemProps> = ({ email }) => {
 
   return (
     <div
-      className={`border-b p-4 cursor-pointer ${
+      className={`container border-b border-gray-300 px-6 py-1 cursor-pointer shadow-md ${
         unread ? "bg-gray-200" : "bg-white"
       } hover:bg-gray-100 transition-colors`}
     >
@@ -29,7 +29,7 @@ const EmailItem: React.FC<EmailItemProps> = ({ email }) => {
           </p>
         </div>
 
-        <div className="text-gray-600 whitespace-nowrap">
+        <div className="whitespace-nowrap ">
           <p>{convertToReadableDate(date)}</p>
         </div>
       </div>
