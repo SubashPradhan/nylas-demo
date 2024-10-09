@@ -8,32 +8,34 @@ interface Folder {
 
 interface FolderNavBarProps {
   folders: Folder[];
+  onFolderSelect: (folderId: string) => void
 }
 
-const importantFolderIds = [
+const importantFolderNames = [
   "INBOX",
-  "DRAFT",
+  "DRAFTS",
   "IMPORTANT",
   "SENT",
   "UNREAD",
   "STARRED",
 ];
 
-const FolderNavBar: React.FC<FolderNavBarProps> = ({ folders }) => {
+const FolderNavBar: React.FC<FolderNavBarProps> = ({ folders, onFolderSelect }) => {
   const importantFolders = folders.filter((folder) =>
-    importantFolderIds.includes(folder.id)
+    importantFolderNames.includes(folder.name.toUpperCase())
   );
   const otherFolders = folders.filter(
-    (folder) => !importantFolderIds.includes(folder.id)
+    (folder) => !importantFolderNames.includes(folder.name.toUpperCase())
   );
 
   return (
     <div className="w-64 h-full bg-gray-100 p-2">
-      <ul className="space-y-4">
+      <ul className="space-y-4 cursor-pointer">
         {importantFolders.map((folder) => (
           <li
             key={folder.id}
             className="flex justify-between items-center rounded-md hover:bg-gray-200"
+            onClick={() => onFolderSelect(folder.id)}
           >
             <span className="font-semibold text-gray-800 capitalize">
               {folder.name.toLowerCase()}
@@ -52,6 +54,7 @@ const FolderNavBar: React.FC<FolderNavBarProps> = ({ folders }) => {
           <li
             key={folder.id}
             className="flex justify-between items-center rounded-md hover:bg-gray-200"
+            onClick={() => onFolderSelect(folder.id)}
           >
             <span className="font-semibold text-gray-800 capitalize">
               {folder.name.toLowerCase()}

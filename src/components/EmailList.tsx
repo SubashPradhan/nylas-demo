@@ -26,7 +26,7 @@ const EmailList: React.FC<EmailListProps> = ({
       ))}
 
       <div className="flex justify-center space-x-12 py-4">
-        {threadPages.length > 0 && (
+        {threadPages.length > 0 && emails.length > 0 && (
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-lg"
             onClick={handlePreviousPage}
@@ -44,6 +44,11 @@ const EmailList: React.FC<EmailListProps> = ({
             {loading ? 'Loading...' : 'Next'}
           </button>
         )}
+        {
+          !emails.length && <div className='text-lg'>
+            No emails in this Folder...
+          </div>
+        }
       </div>
     </div>
   );

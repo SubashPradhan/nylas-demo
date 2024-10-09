@@ -15,10 +15,11 @@ const EmailPage: React.FC = () => {
   const [threadPages, setThreadPages] = useState<EmailThread[][]>([]);
   const [folders, setFolders] = useState<Folder[]>([]);
   const [loading, setLoading] = useState(false);
+  const [currentFolder, setCurrentFolder] = useState<string | null>(null);
 
-  const fetchThreads = async (cursor?: string) => {
+  const fetchThreads = async (cursor?: string, folderId?: string) => {
     setLoading(true);
-    const result = await getMailboxThreads(cursor);
+    const result = await getMailboxThreads(cursor, folderId);
     if (result && result.data) {
       if (cursor) {
         setThreadPages((prev) => [...prev, threads]);
@@ -51,7 +52,7 @@ const EmailPage: React.FC = () => {
 
   const handleNextPage = () => {
     if (nextCursor) {
-      fetchThreads(nextCursor);
+      fetchThreads(nextCursor, currentFolder || undefined);
     }
   };
 
@@ -65,13 +66,18 @@ const EmailPage: React.FC = () => {
     }
   };
 
+  const handleFolderSelect = (folderId: string) => {
+    setCurrentFolder(folderId);
+    fetchThreads(undefined, folderId)
+  };
+
   return (
     <>
       {!user ? (
         <LoginRequired />
       ) : (
         <div className="flex h-screen">
-          <FolderNavBar folders={folders} />
+          <FolderNavBar folders={folders} onFolderSelect={handleFolderSelect}/>
           <div className="flex flex-col">
             <EmailList
               emails={threads}
