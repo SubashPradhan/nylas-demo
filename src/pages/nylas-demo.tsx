@@ -21,7 +21,7 @@ const NylasDemo: React.FC = () => {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-lg">
             <button className="bg-yellow-500 font-bold text-white p-4 rounded-md hover:bg-gray-100 hover:text-blue-600 transition-colors duration-200 w-full">
-              <Link href="/email"> Email</Link>
+              <Link href="/email">Email</Link>
             </button>
 
             <div className="relative group">
