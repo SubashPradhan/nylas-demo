@@ -19,6 +19,10 @@ const EmailPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
   const [isComposeVisible, setIsComposeVisible] = useState<boolean>(false);
+  const [selectedEmail, setSelectedEmail] = useState<EmailThread | null>(null);
+  const [filteredThreads, setFilteredThreads] = useState<EmailThread[] | null>(
+    []
+  );
 
   const fetchThreads = async (cursor?: string, folderId?: string) => {
     setLoading(true);
@@ -29,6 +33,7 @@ const EmailPage: React.FC = () => {
       }
       setThreads(result.data);
       setNextCursor(result.next_cursor);
+      setFilteredThreads(result.data);
     } else {
       console.error("Failed to fetch threads");
     }
@@ -64,6 +69,7 @@ const EmailPage: React.FC = () => {
       const previousPage = threadPages.pop();
       if (previousPage) {
         setThreads(previousPage);
+        setFilteredThreads(previousPage);
       }
       setThreadPages([...threadPages]);
     }
@@ -72,6 +78,7 @@ const EmailPage: React.FC = () => {
   const handleFolderSelect = (folderId: string) => {
     setCurrentFolder(folderId);
     fetchThreads(undefined, folderId);
+    setSelectedEmail(null);
   };
 
   const handleCompose = () => {
@@ -80,6 +87,22 @@ const EmailPage: React.FC = () => {
 
   const handleCloseCompose = () => {
     setIsComposeVisible(false);
+  };
+
+  const handleEmailSelect = (email: EmailThread) => {
+    setSelectedEmail(email);
+  };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value.toLowerCase();
+    const filtered = threads.filter((email) => {
+      const subject =
+        email.latest_draft_or_message.subject?.toLowerCase() || "";
+      const fromName =
+        email.latest_draft_or_message.from[0]?.name?.toLowerCase() || "";
+      return subject.includes(query) || fromName.includes(query);
+    });
+    setFilteredThreads(filtered);
   };
 
   return (
@@ -95,16 +118,37 @@ const EmailPage: React.FC = () => {
             />
           </div>
           <div className="flex flex-col w-full">
-            <EmailNavBar onCompose={handleCompose} />
+            <EmailNavBar onCompose={handleCompose} onSearch={handleSearch}/>
 
-            <EmailList
-              emails={threads}
-              nextCursor={nextCursor}
-              threadPages={threadPages}
-              handleNextPage={handleNextPage}
-              handlePreviousPage={handlePreviousPage}
-              loading={loading}
-            />
+            {selectedEmail ? (
+              <div className="p-4 bg-white shadow-md">
+                <h2 className="text-xl font-bold">
+                  {selectedEmail.latest_draft_or_message.subject}
+                </h2>
+                <div
+                  className="mt-4 text-gray-800"
+                  dangerouslySetInnerHTML={{
+                    __html: selectedEmail.latest_draft_or_message.body,
+                  }}
+                />
+                <button
+                  onClick={() => setSelectedEmail(null)}
+                  className="mt-4 text-blue-500 hover:underline"
+                >
+                  Back to Mailbox
+                </button>
+              </div>
+            ) : (
+              <EmailList
+                emails={filteredThreads}
+                nextCursor={nextCursor}
+                threadPages={threadPages}
+                handleNextPage={handleNextPage}
+                handlePreviousPage={handlePreviousPage}
+                loading={loading}
+                onEmailSelect={handleEmailSelect}
+              />
+            )}
           </div>
 
           <ComposeEmail
