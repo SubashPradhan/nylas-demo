@@ -11,7 +11,7 @@ const NylasDemo: React.FC = () => {
   return (
     <>
       <NavBar />
-      {!user ? (
+      {!user?.grant_id ? (
         <LoginRequired />
       ) : (
         <div className="relative min-h-[60vh] flex flex-col items-center justify-center bg-blue-500 p-4 tracking-wide">

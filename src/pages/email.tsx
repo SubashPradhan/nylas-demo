@@ -47,7 +47,7 @@ const EmailPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user?.grant_id) {
       fetchThreads();
       fetchFolders();
     }

@@ -30,7 +30,7 @@ const FolderNavBar: React.FC<FolderNavBarProps> = ({ folders, onFolderSelect }) 
   );
 
   return (
-    <div className="w-64 h-full bg-gray-100 p-2">
+    <div className="w-64 min-h-screen bg-gray-100 p-2">
       <ul className="space-y-4 cursor-pointer px-2">
         <li key="nylas" className="font-bold text-2xl text-blue-500 p-2 border-b mb-6">
         <Link href="/">Nylas Demo</Link>
