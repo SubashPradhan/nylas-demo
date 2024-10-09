@@ -1,7 +1,13 @@
-const NylasDemo: React.FC = () => {
-  return<>
-    <div>Hello</div>
-  </>
-}
+import { useAuth } from "@/hooks/useAuth";
 
-export default NylasDemo
+const NylasDemo: React.FC = () => {
+  const { user } = useAuth();
+  console.log("User in nylas-demo page", user);
+  return (
+    <>
+      <div>Hello</div>
+    </>
+  );
+};
+
+export default NylasDemo;
