@@ -1,16 +1,7 @@
-import { connectMailbox } from "@/services/nylasConnectServices";
+import { handleMailboxConnect } from "@/services/handleMailboxConnect";
 import React from "react";
 
-const Hero: React.FC = () => {
-  const handleMailboxConnect = async () => {
-    try{
-      const response = await connectMailbox()
-      return response
-    } catch (error) {
-      console.error("An error occured while connecting mailbox", error)
-    }
-  }
-  
+const Hero: React.FC = () => {  
   return (
     <section className="relative bg-blue-500 text-white overflow-hidden">
       <div className="container mx-auto px-4 py-8 md:py-16 md:pb-24 text-center tracking-wider min-h-screen sm:min-h-[60vh]">
