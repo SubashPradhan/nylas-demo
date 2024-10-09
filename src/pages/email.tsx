@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { EmailThread } from "@/types/email";
 import { Folder } from "@/types/folder";
 import { getMailboxFolder } from "@/services/nylasFoldersServices";
+import EmailNavBar from "@/components/EmailTopBar";
 
 const EmailPage: React.FC = () => {
   const { user } = useAuth();
@@ -76,22 +77,27 @@ const EmailPage: React.FC = () => {
       {!user ? (
         <LoginRequired />
       ) : (
-        <div className="flex h-screen">
-          <FolderNavBar folders={folders} onFolderSelect={handleFolderSelect}/>
-          <div className="flex flex-col">
-            <EmailList
-              emails={threads}
-              nextCursor={nextCursor}
-              threadPages={threadPages}
-              handleNextPage={handleNextPage}
-              handlePreviousPage={handlePreviousPage}
-              loading={loading}
-            />
+        <div className="flex flex-col h-screen">
+          <EmailNavBar />
+          
+          <div className="flex flex-1">
+            <FolderNavBar folders={folders} onFolderSelect={handleFolderSelect} />
+            <div className="flex flex-col flex-1">
+              <EmailList
+                emails={threads}
+                nextCursor={nextCursor}
+                threadPages={threadPages}
+                handleNextPage={handleNextPage}
+                handlePreviousPage={handlePreviousPage}
+                loading={loading}
+              />
+            </div>
           </div>
         </div>
       )}
     </>
   );
+
 };
 
 export default EmailPage;
