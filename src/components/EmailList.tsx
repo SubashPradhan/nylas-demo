@@ -20,7 +20,7 @@ const EmailList: React.FC<EmailListProps> = ({
   loading
 }) => {
   return (
-    <div className="bg-white px-4">
+    <div className="bg-white">
       {emails.map((email) => (
         <EmailItem key={email.id} email={email} />
       ))}

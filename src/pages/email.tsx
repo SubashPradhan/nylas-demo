@@ -1,6 +1,6 @@
 import EmailList from "@/components/EmailList";
 import LoginRequired from "@/components/LoginRequired";
-import FolderNavBar from "@/components/FolderNavBar"; // Import FolderNavBar
+import FolderNavBar from "@/components/FolderNavBar";
 import { useAuth } from "@/context/authContext";
 import { getMailboxThreads } from "@/services/nylasThreadsServices";
 import { useEffect, useState } from "react";
@@ -18,7 +18,7 @@ const EmailPage: React.FC = () => {
   const [folders, setFolders] = useState<Folder[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
-  const [isComposeVisible, setIsComposeVisible] = useState<boolean>(false)
+  const [isComposeVisible, setIsComposeVisible] = useState<boolean>(false);
 
   const fetchThreads = async (cursor?: string, folderId?: string) => {
     setLoading(true);
@@ -71,11 +71,11 @@ const EmailPage: React.FC = () => {
 
   const handleFolderSelect = (folderId: string) => {
     setCurrentFolder(folderId);
-    fetchThreads(undefined, folderId)
+    fetchThreads(undefined, folderId);
   };
 
   const handleCompose = () => {
-    setIsComposeVisible(true); 
+    setIsComposeVisible(true);
   };
 
   const handleCloseCompose = () => {
@@ -87,29 +87,34 @@ const EmailPage: React.FC = () => {
       {!user ? (
         <LoginRequired />
       ) : (
-        <div className="flex flex-col h-screen">
-          <EmailNavBar onCompose={handleCompose}/>
-          
-          <div className="flex flex-1">
-            <FolderNavBar folders={folders} onFolderSelect={handleFolderSelect} />
-            <div className="flex flex-col flex-1">
-              <EmailList
-                emails={threads}
-                nextCursor={nextCursor}
-                threadPages={threadPages}
-                handleNextPage={handleNextPage}
-                handlePreviousPage={handlePreviousPage}
-                loading={loading}
-              />
-            </div>
+        <div className="flex min-h-screen">
+          <div className="w-auto h-full">
+            <FolderNavBar
+              folders={folders}
+              onFolderSelect={handleFolderSelect}
+            />
+          </div>
+          <div className="flex flex-col w-full">
+            <EmailNavBar onCompose={handleCompose} />
+
+            <EmailList
+              emails={threads}
+              nextCursor={nextCursor}
+              threadPages={threadPages}
+              handleNextPage={handleNextPage}
+              handlePreviousPage={handlePreviousPage}
+              loading={loading}
+            />
           </div>
 
-          <ComposeEmail isVisible={isComposeVisible} onClose={handleCloseCompose} />
+          <ComposeEmail
+            isVisible={isComposeVisible}
+            onClose={handleCloseCompose}
+          />
         </div>
       )}
     </>
   );
-
 };
 
 export default EmailPage;

@@ -9,11 +9,9 @@ const EmailNavBar: React.FC<EmailNavBarProps> = ({onCompose}) => {
   const { user } = useAuth();
   const userInitial = user?.email?.charAt(0).toUpperCase() || "?";
 
-  const handleCompose = () => {
-    console.log('test')
-  }
+ 
   return (
-    <div className="flex items-center justify-between bg-white p-4 shadow-sm">
+    <div className="flex items-center justify-between bg-white p-6 mb-4 shadow-sm container">
       <div className="flex items-center space-x-4">
         <input
           type="text"
