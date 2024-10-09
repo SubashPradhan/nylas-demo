@@ -5,7 +5,6 @@ export const getUserDetails = async (): Promise<User | null> => {
     const response = await fetch("/api/authentication/user");
     if (response.ok) {
       const data = await response.json();
-      console.log("What is coming in", data);
       return data["data"];
     } else {
       console.error("Failed to connect mailbox", response.text());
