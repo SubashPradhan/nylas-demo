@@ -1,11 +1,13 @@
+import Footer from "@/components/Footer";
 import LoginRequired from "@/components/LoginRequired";
 import NavBar from "@/components/Navbar";
 import Wave from "@/components/Wave";
 import { useAuth } from "@/context/authContext";
+import Link from "next/link";
 
 const NylasDemo: React.FC = () => {
   const { user } = useAuth();
-  
+
   console.log("User in nylas-demo page", user);
   return (
     <>
@@ -19,7 +21,7 @@ const NylasDemo: React.FC = () => {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-lg">
             <button className="bg-yellow-500 font-bold text-white p-4 rounded-md hover:bg-gray-100 hover:text-blue-600 transition-colors duration-200 w-full">
-              Email
+              <Link href="/email">Email</Link>
             </button>
 
             <div className="relative group">
@@ -47,9 +49,10 @@ const NylasDemo: React.FC = () => {
               </span>
             </div>
           </div>
-         <Wave />
+          <Wave />
         </div>
       )}
+      <Footer />
     </>
   );
 };

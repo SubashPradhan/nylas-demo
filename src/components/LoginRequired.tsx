@@ -1,4 +1,4 @@
-import { handleMailboxConnect } from "@/services/handleMailboxConnect";
+import { handleMailboxConnect } from "@/utils/handleMailboxConnect";
 import Link from "next/link";
 
 const LoginRequired: React.FC = () => {
