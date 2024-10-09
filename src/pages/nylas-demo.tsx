@@ -14,11 +14,11 @@ const NylasDemo: React.FC = () => {
       {!user?.grant_id ? (
         <LoginRequired />
       ) : (
-        <div className="relative min-h-[60vh] flex flex-col items-center justify-center bg-blue-500 p-4 tracking-wide">
-          <h1 className="text-2xl font-bold mb-10 text-white">
-            Which API Would You Like to Demo.
+        <div className="relative min-h-[50vh] flex flex-col items-center justify-center bg-blue-500 p-4 tracking-wide">
+          <h1 className="text-3xl font-bold text-white">
+            Which API would you like to demo today.
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-lg mt-10">
             <button className="bg-yellow-500 font-bold text-white p-4 rounded-md hover:bg-gray-100 hover:text-blue-600 transition-colors duration-200 w-full">
               <Link href="/email">Email</Link>
             </button>
