@@ -38,3 +38,13 @@ export interface EmailResponse {
   next_cursor?: string;
   request_id: string;
 }
+
+export interface EmailSendPayload {
+  to: To[]
+  subject: string
+  body: string
+}
+
+interface To {
+  email: string
+}

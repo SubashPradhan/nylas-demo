@@ -7,8 +7,7 @@ import Link from "next/link";
 
 const NylasDemo: React.FC = () => {
   const { user } = useAuth();
-
-  console.log("User in nylas-demo page", user);
+  
   return (
     <>
       <NavBar />
