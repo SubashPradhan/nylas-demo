@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import { connectMailbox } from "@/services/nylasConnectServices";
+import React from "react";
 
 const Hero: React.FC = () => {
-  const [email, setEmail] = useState("");
+  const handleMailboxConnect = async () => {
+    try{
+      const response = await connectMailbox()
+      return response
+    } catch (error) {
+      console.error("An error occured while connecting mailbox", error)
+    }
+  }
   
   return (
     <section className="relative bg-blue-500 text-white overflow-hidden">
@@ -18,20 +26,14 @@ const Hero: React.FC = () => {
         </p>
         <p className="text-xl md:text-2xl mb-6 font-semibold">
           Ready to see Nylas in action? 
-          Connect your mailbox to test our demo application!
+          Connect your mailbox to get started with our demo application!
         </p>
         <div className="max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            className="w-full px-4 py-2 text-black rounded mb-6 focus:outline-none focus:bg-gray-200"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
           <button
-            className="bg-yellow-500 font-bold text-white px-4 py-2 rounded hover:bg-gray-100 hover:text-blue-500"
+            className="bg-yellow-500 font-bold text-cream-300 px-6 py-4 rounded hover:bg-gray-100 hover:text-blue-500 mt-6 text-lg tracking-widest"
+            onClick={handleMailboxConnect}
           >
-            Connect Your Mailbox
+            Connect Mailbox
           </button>
         </div>
       </div>
