@@ -1,8 +1,11 @@
 import React from "react";
 import { useAuth } from "@/context/authContext"; // Import useAuth to get user details
 
+interface EmailNavBarProps {
+  onCompose: () => void
+}
 
-const EmailNavBar: React.FC = () => {
+const EmailNavBar: React.FC<EmailNavBarProps> = ({onCompose}) => {
   const { user } = useAuth();
   const userInitial = user?.email?.charAt(0).toUpperCase() || "?";
 
@@ -22,7 +25,7 @@ const EmailNavBar: React.FC = () => {
       <div className="flex items-center space-x-8 px-10">
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
-          onClick={handleCompose}
+          onClick={onCompose}
         >
           Compose Email
         </button>

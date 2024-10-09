@@ -3,7 +3,6 @@ export const getMailboxFolder = async () => {
   try {
     if (response.ok) {
       const data = response.json();
-      console.log("data in services folders", data)
       return data;
     } else {
       console.error("Failed to fetch folders", response.text());

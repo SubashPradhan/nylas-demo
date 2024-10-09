@@ -8,6 +8,7 @@ import { EmailThread } from "@/types/email";
 import { Folder } from "@/types/folder";
 import { getMailboxFolder } from "@/services/nylasFoldersServices";
 import EmailNavBar from "@/components/EmailTopBar";
+import ComposeEmail from "@/components/EmailCompose";
 
 const EmailPage: React.FC = () => {
   const { user } = useAuth();
@@ -17,6 +18,7 @@ const EmailPage: React.FC = () => {
   const [folders, setFolders] = useState<Folder[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentFolder, setCurrentFolder] = useState<string | null>(null);
+  const [isComposeVisible, setIsComposeVisible] = useState<boolean>(false)
 
   const fetchThreads = async (cursor?: string, folderId?: string) => {
     setLoading(true);
@@ -72,13 +74,21 @@ const EmailPage: React.FC = () => {
     fetchThreads(undefined, folderId)
   };
 
+  const handleCompose = () => {
+    setIsComposeVisible(true); 
+  };
+
+  const handleCloseCompose = () => {
+    setIsComposeVisible(false);
+  };
+
   return (
     <>
       {!user ? (
         <LoginRequired />
       ) : (
         <div className="flex flex-col h-screen">
-          <EmailNavBar />
+          <EmailNavBar onCompose={handleCompose}/>
           
           <div className="flex flex-1">
             <FolderNavBar folders={folders} onFolderSelect={handleFolderSelect} />
@@ -93,6 +103,8 @@ const EmailPage: React.FC = () => {
               />
             </div>
           </div>
+
+          <ComposeEmail isVisible={isComposeVisible} onClose={handleCloseCompose} />
         </div>
       )}
     </>
