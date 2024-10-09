@@ -3,18 +3,19 @@ import { useAuth } from "@/context/authContext"; // Import useAuth to get user d
 
 interface EmailNavBarProps {
   onCompose: () => void
+  onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const EmailNavBar: React.FC<EmailNavBarProps> = ({onCompose}) => {
+const EmailNavBar: React.FC<EmailNavBarProps> = ({onCompose, onSearch}) => {
   const { user } = useAuth();
   const userInitial = user?.email?.charAt(0).toUpperCase() || "?";
 
- 
   return (
     <div className="flex items-center justify-between bg-white p-6 mb-4 shadow-sm container">
       <div className="flex items-center space-x-4">
         <input
           type="text"
+          onChange={onSearch}
           placeholder="Search mail"
           className="border rounded-full py-2 px-4 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
