@@ -1,7 +1,6 @@
 # Nylas Demo
 Welcome to **Nylas Demo**. This frontend (Nextjs) application showcases the integration with the Nylas API, providing a simple interface for managing emails, folders, and threads.
 
-
 ## Getting Started
 - Clone the repo using below command:
 
@@ -30,3 +29,5 @@ Welcome to **Nylas Demo**. This frontend (Nextjs) application showcases the inte
   npm run build
   npm start
   ```
+
+- See application in action: https://www.loom.com/share/82aa94ec22904db0981716d0aa978ff0?sid=a33823d9-440d-4bb4-bcf8-964a3291ca94
