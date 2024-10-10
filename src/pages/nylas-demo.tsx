@@ -14,7 +14,7 @@ const NylasDemo: React.FC = () => {
       {!user?.grant_id ? (
         <LoginRequired />
       ) : (
-        <div className="relative min-h-[50vh] flex flex-col items-center justify-center bg-blue-500 p-4 tracking-wide">
+        <div className="relative min-h-[50vh] sm:min-h-[50vh] flex flex-col items-center justify-center bg-blue-500 p-4 tracking-wide">
           <h1 className="text-3xl font-bold text-white">
             Which API would you like to demo today.
           </h1>
@@ -31,7 +31,7 @@ const NylasDemo: React.FC = () => {
                 Calendar
               </button>
 
-              <span className="absolute top-[-4rem] left-1/2 transform -translate-x-1/2 text-gray-700 text-sm bg-gray-200 px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="absolute sm:top-[-4rem] top-0 left-1/2 transform -translate-x-1/2 text-gray-700 text-sm bg-gray-200 px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
                 Coming Soon
               </span>
             </div>
@@ -43,7 +43,7 @@ const NylasDemo: React.FC = () => {
               >
                 Contacts
               </button>
-              <span className="absolute top-[-4rem] left-1/2 transform -translate-x-1/2 text-gray-700 text-sm bg-gray-200 px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="absolute sm:top-[-4rem] top-0 left-1/2 transform -translate-x-1/2 text-gray-700 text-sm bg-gray-200 px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
                 Coming Soon
               </span>
             </div>
