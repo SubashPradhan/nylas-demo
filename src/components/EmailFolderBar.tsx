@@ -7,7 +7,7 @@ interface Folder {
   unread_count: number;
 }
 
-interface FolderNavBarProps {
+interface EmailFolderBarProps {
   folders: Folder[];
   onFolderSelect: (folderId: string) => void
 }
@@ -21,7 +21,7 @@ const importantFolderNames = [
   "STARRED",
 ];
 
-const FolderNavBar: React.FC<FolderNavBarProps> = ({ folders, onFolderSelect }) => {
+const EmailFolderBar: React.FC<EmailFolderBarProps> = ({ folders, onFolderSelect }) => {
   const importantFolders = folders.filter((folder) =>
     importantFolderNames.includes(folder.name.toUpperCase())
   );
@@ -76,4 +76,4 @@ const FolderNavBar: React.FC<FolderNavBarProps> = ({ folders, onFolderSelect }) 
   );
 };
 
-export default FolderNavBar;
+export default EmailFolderBar;

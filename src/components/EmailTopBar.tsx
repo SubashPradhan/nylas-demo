@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useAuth } from "@/context/authContext"; 
 import UserMenu from "./userMenu";
 
-interface EmailNavBarProps {
+interface EmailTopBarProps {
   onCompose: () => void;
   onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const EmailNavBar: React.FC<EmailNavBarProps> = ({ onCompose, onSearch }) => {
+const EmailTopBar: React.FC<EmailTopBarProps> = ({ onCompose, onSearch }) => {
   const { user } = useAuth();
   const userInitial = user?.email?.charAt(0).toUpperCase() || "?";
   const [showMenu, setShowMenu] = useState(false);
@@ -55,4 +55,4 @@ const EmailNavBar: React.FC<EmailNavBarProps> = ({ onCompose, onSearch }) => {
   );
 };
 
-export default EmailNavBar;
+export default EmailTopBar;
