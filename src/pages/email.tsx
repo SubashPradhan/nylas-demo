@@ -1,13 +1,13 @@
 import EmailList from "@/components/EmailList";
 import LoginRequired from "@/components/LoginRequired";
-import FolderNavBar from "@/components/FolderNavBar";
+import EmailFolderBar from "@/components/EmailFolderBar";
 import { useAuth } from "@/context/authContext";
 import { getMailboxThreads } from "@/services/nylasThreadsServices";
 import { useEffect, useState } from "react";
 import { EmailThread } from "@/types/email";
 import { Folder } from "@/types/folder";
 import { getMailboxFolder } from "@/services/nylasFoldersServices";
-import EmailNavBar from "@/components/EmailTopBar";
+import EmailTopBar from "@/components/EmailTopBar";
 import ComposeEmail from "@/components/EmailCompose";
 
 const EmailPage: React.FC = () => {
@@ -42,7 +42,6 @@ const EmailPage: React.FC = () => {
 
   const fetchFolders = async () => {
     const response = await getMailboxFolder();
-    console.log(response);
     const data = await response.data;
     if (data) {
       setFolders(data);
@@ -79,6 +78,7 @@ const EmailPage: React.FC = () => {
     setCurrentFolder(folderId);
     fetchThreads(undefined, folderId);
     setSelectedEmail(null);
+    setThreadPages([])
   };
 
   const handleCompose = () => {
@@ -112,13 +112,13 @@ const EmailPage: React.FC = () => {
       ) : (
         <div className="flex min-h-screen">
           <div className="w-auto h-full">
-            <FolderNavBar
+            <EmailFolderBar
               folders={folders}
               onFolderSelect={handleFolderSelect}
             />
           </div>
           <div className="flex flex-col w-full">
-            <EmailNavBar onCompose={handleCompose} onSearch={handleSearch}/>
+            <EmailTopBar onCompose={handleCompose} onSearch={handleSearch}/>
 
             {selectedEmail ? (
               <div className="p-4 bg-white shadow-md">
