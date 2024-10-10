@@ -42,7 +42,6 @@ const EmailPage: React.FC = () => {
 
   const fetchFolders = async () => {
     const response = await getMailboxFolder();
-    console.log(response);
     const data = await response.data;
     if (data) {
       setFolders(data);
@@ -79,6 +78,7 @@ const EmailPage: React.FC = () => {
     setCurrentFolder(folderId);
     fetchThreads(undefined, folderId);
     setSelectedEmail(null);
+    setThreadPages([])
   };
 
   const handleCompose = () => {

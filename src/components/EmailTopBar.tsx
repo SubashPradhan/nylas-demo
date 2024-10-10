@@ -23,13 +23,13 @@ const EmailTopBar: React.FC<EmailTopBarProps> = ({ onCompose, onSearch }) => {
           type="text"
           onChange={onSearch}
           placeholder="Search mail"
-          className="border rounded-full py-2 px-4 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border rounded py-2 px-4 w-72 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100"
         />
       </div>
 
       <div className="flex items-center space-x-8 px-10">
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           onClick={onCompose}
         >
           Compose Email

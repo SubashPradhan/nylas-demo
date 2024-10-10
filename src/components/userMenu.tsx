@@ -1,6 +1,7 @@
 import { useAuth } from "@/context/authContext";
 import { handleUserLogout } from "@/services/userLogoutServices";
 import { useRouter } from "next/router";
+import Footer from "./Footer";
 
 interface UserMenuProps {
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
@@ -98,6 +99,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ setShowMenu, userInitial }) => {
             </li>
           </ul>
         </div>
+        <Footer />
       </div>
     </>
   );

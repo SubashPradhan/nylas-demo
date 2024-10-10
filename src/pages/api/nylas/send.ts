@@ -34,7 +34,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const data = await response.json();
     const send_data = await data["data"]
-    console.log("In the proxy", send_data)
     return res.status(200).json(send_data)
   } catch (error){
     console.error("Error while retreiving send for the user:", error)

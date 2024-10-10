@@ -22,6 +22,7 @@ const ComposeEmail: React.FC<ComposeEmailProps> = ({ isVisible, onClose }) => {
   const [toError, setToError] = useState<string | null>(null);
 
   const handleEmailKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    setToError(null)
     if (e.key === "Enter" || e.key === "," || e.key === " " || e.key === "Tab") {
       e.preventDefault();
       if (emailInput.trim() && isValidEmail(emailInput.trim())) {
@@ -74,6 +75,7 @@ const ComposeEmail: React.FC<ComposeEmailProps> = ({ isVisible, onClose }) => {
         });
       }
     } catch (error) {
+      console.error("Failed to send message", error)
       setNotification({
         message: "Failed to send message, please check your payload",
         type: "error",
@@ -87,12 +89,12 @@ const ComposeEmail: React.FC<ComposeEmailProps> = ({ isVisible, onClose }) => {
 
   return (
     <div
-      className={`fixed bottom-0 right-0 w-2/4 bg-white p-4 shadow-lg transform ${
+      className={`fixed bottom-0 right-0 w-2/4 bg-white p-4 shadow-lg transform rounded border  ${
         isVisible ? "translate-y-0" : "translate-y-full"
       } transition-transform duration-300 ease-in-out`}
     >
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">New Email</h2>
+        <h2 className="text-lg font-semibold">Compose Email</h2>
         <button className="text-red-500 hover:text-red-700" onClick={onClose}>
           Close
         </button>
@@ -131,8 +133,9 @@ const ComposeEmail: React.FC<ComposeEmailProps> = ({ isVisible, onClose }) => {
             value={emailInput}
             onChange={(e) => setEmailInput(e.target.value)}
             onKeyDown={handleEmailKeyPress}
-            className="outline-none p-2 flex-grow"
+            className="outline-none flex-grow"
             placeholder="Enter email and press Enter or Comma"
+            required
           />
         </div>
         {toError && <p className="text-red-500 text-sm mt-2">{toError}</p>}
@@ -153,7 +156,7 @@ const ComposeEmail: React.FC<ComposeEmailProps> = ({ isVisible, onClose }) => {
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded h-32"
+          className="w-full p-2 border border-gray-300 rounded h-44"
         />
       </div>
 
