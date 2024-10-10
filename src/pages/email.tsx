@@ -115,6 +115,7 @@ const EmailPage: React.FC = () => {
             <EmailFolderBar
               folders={folders}
               onFolderSelect={handleFolderSelect}
+              currentFolder={currentFolder}
             />
           </div>
           <div className="flex flex-col w-full">
